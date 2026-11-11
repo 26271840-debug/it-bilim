@@ -430,7 +430,7 @@ function setLang(i){lang=i;try{localStorage.setItem("itl",i)}catch(e){}document.
 $("#lang").onchange=function(){setLang(+this.value)};
 
 /* share + QR */
-var SHARE_URL="https://claude.ai/artifact/2QonkyoH5trjG3dVVn5snu";
+var SHARE_URL="https://26271840-debug.github.io/it-bilim/";
 function showQR(e){if(e&&e.preventDefault)e.preventDefault();
  modal('<h3>Сайтпен бөлісу</h3><p>QR-кодты телефон камерасымен сканерлеңіз</p><div id="qrc" style="background:#fff;padding:14px;border-radius:12px;display:inline-block"></div><p></p><input readonly id="shl" value="'+SHARE_URL+'"><p></p><button class="btn" id="cpl">Сілтемені көшіру</button>');
  try{new QRCode($("#qrc"),{text:SHARE_URL,width:220,height:220,colorDark:"#000000",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M})}catch(x){$("#qrc").style.display="none"}
