@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IT Bilim — айти онлайн оқу платформасы</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1E1E1E;--bg2:#272727;--bg3:#323232;--tx:#F2F2F2;--mu:#A9A9A9;--g:#4CAF50;--gh:#5fc463;--bd:#3d3d3d;--r:10px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));height:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.6 Manrope,system-ui,Arial,sans-serif;min-height:100%}
+a{color:inherit;text-decoration:none}
+.w{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800}
+h3{font-size:1.1rem}
+p{margin:0 0 1em;color:var(--mu)}
+.btn{display:inline-block;background:var(--g);color:#0f1a10;border:0;border-radius:var(--r);padding:11px 22px;font:600 1rem Manrope,sans-serif;cursor:pointer}
+.btn:hover{background:var(--gh)}
+.btn.o{background:none;color:var(--tx);border:1px solid var(--bd)}
+.btn.o:hover{border-color:var(--g);color:var(--g)}
+.btn.s{padding:7px 14px;font-size:.9rem}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:rgba(30,30,30,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top,0px)}
+.hb{display:flex;align-items:center;gap:20px;height:64px}
+.logo{font-weight:800;font-size:1.25rem}.logo b{color:var(--g)}
+nav{display:flex;gap:6px;margin-left:auto}
+nav a{padding:6px 10px;border-radius:8px;color:var(--mu);font-size:.95rem}
+nav a:hover{color:var(--tx);background:var(--bg2)}
+.burger{display:none;background:none;border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:6px 10px;font-size:1.2rem;margin-left:auto}
+@media(max-width:860px){.burger{display:block}nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;padding:10px 20px;border-bottom:1px solid var(--bd)}nav.open{display:flex}#authBtn{margin-left:0}}
+.hero{padding:80px 0 56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.code{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:18px;font:500 .9rem/1.7 ui-monospace,Menlo,Consolas,monospace;color:#cfcfcf;overflow-x:auto}
+.code i{color:var(--g);font-style:normal}.code em{color:#8a8a8a;font-style:normal}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:22px;display:flex;flex-direction:column}
+.card .btn{margin-top:auto}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.tab{background:none;border:1px solid var(--bd);color:var(--mu);border-radius:20px;padding:6px 16px;font:600 .9rem Manrope,sans-serif;cursor:pointer}
+.tab.on{background:var(--g);border-color:var(--g);color:#0f1a10}
+.price{font-size:1.4rem;font-weight:800;margin:6px 0 12px}
+.meta{font-size:.88rem;color:var(--mu);margin:0 0 4px}
+ul.pr{margin:8px 0 16px;padding-left:18px;color:var(--mu);font-size:.92rem}
+.team{display:flex;gap:18px;flex-wrap:wrap}
+.av{width:56px;height:56px;border-radius:50%;background:var(--g);color:#0f1a10;display:grid;place-items:center;font-weight:800;font-size:1.3rem;margin-bottom:12px;object-fit:cover;overflow:hidden}
+.stars{color:var(--g);letter-spacing:2px}
+.car{position:relative}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;scrollbar-width:none;padding-bottom:4px}
+.track::-webkit-scrollbar{display:none}
+.rv{flex:0 0 min(340px,86%);scroll-snap-align:start}
+.rv .who{display:flex;gap:12px;align-items:center;margin-top:auto}
+.rv .av{margin:0;width:44px;height:44px;font-size:1rem}
+.cn{display:flex;gap:10px;margin-top:14px}
+.mapb{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+label{display:block;font-size:.88rem;color:var(--mu);margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:10px 12px;font:400 1rem Manrope,sans-serif}
+textarea{min-height:90px;resize:vertical}
+footer{border-top:1px solid var(--bd);padding:28px 0;color:var(--mu);font-size:.9rem}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.ov.on{display:flex}
+.md{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:26px;width:100%;max-width:520px;max-height:90vh;overflow:auto;position:relative}
+.md.big{max-width:780px}
+.x{position:absolute;right:14px;top:10px;background:none;border:0;color:var(--mu);font-size:1.6rem;cursor:pointer}
+.rate{display:flex;gap:4px}.rate button{background:none;border:0;font-size:1.8rem;color:var(--bd);cursor:pointer;padding:0}.rate button.on{color:var(--g)}
+.opt{display:flex;gap:10px;margin-top:10px}.opt label{flex:1;margin:0;border:1px solid var(--bd);border-radius:8px;padding:10px;color:var(--tx);cursor:pointer;display:flex;gap:8px;align-items:center}
+.opt input{width:auto}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--g);color:#0f1a10;padding:10px 18px;border-radius:10px;font-weight:600;z-index:90;display:none;max-width:90%}
+#chatB{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--g);border:0;font-size:1.5rem;cursor:pointer;z-index:40;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+#chat{position:fixed;right:18px;bottom:calc(86px + env(safe-area-inset-bottom,0px));width:340px;max-width:calc(100% - 36px);height:440px;max-height:70vh;background:var(--bg2);border:1px solid var(--bd);border-radius:16px;display:none;flex-direction:column;z-index:40;overflow:hidden}
+#chat.on{display:flex}
+.ch{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:82%;padding:8px 12px;border-radius:12px;font-size:.93rem;background:var(--bg3);align-self:flex-start;word-break:break-word}
+.m.me{background:var(--g);color:#0f1a10;align-self:flex-end}
+.cf{display:flex;gap:6px;padding:10px;border-top:1px solid var(--bd)}
+.cf input[type=text]{flex:1}
+.clip{background:none;border:1px solid var(--bd);color:var(--tx);border-radius:8px;width:42px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:.92rem}td,th{text-align:left;padding:8px 6px;border-bottom:1px solid var(--bd)}th{color:var(--mu);font-weight:600}
+.badge{font-size:.78rem;background:var(--bg3);border-radius:6px;padding:2px 8px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="w hb">
+<a href="#top" class="logo">IT <b>Bilim</b></a>
+<button class="burger" id="bg" aria-label="Мәзір">☰</button>
+<nav id="nav"><a href="#top">Бас бет</a><a href="#services">Сервистер</a><a href="#courses">Курстар</a><a href="#team">Команда</a><a href="#reviews">Пікірлер</a><a href="#contacts">Контактілер</a></nav>
+<select id="lang" aria-label="Тіл" style="width:auto;padding:6px 8px"><option value="0">Қазақша</option><option value="1">Русский</option><option value="2">English</option></select>
+<button class="btn s" id="authBtn">Кіру</button>
+</div></header>
+
+<main id="top">
+<div class="w hero">
+<div>
+<h1>Айтиді нөлден бастап, нақты жобаға дейін үйрен</h1>
+<p>Алматыдағы IT Bilim: Python, веб-әзірлеу және деректер талдауы. Тәжірибелі ұстаздармен онлайн және офлайн сабақтар, әр курста өз жобаң болады.</p>
+<a class="btn" href="#courses">Курсты таңдау</a> <a class="btn o" href="#contacts">Сұрақ қою</a> <button class="btn o" id="qrb2">QR</button>
+</div>
+<div class="code" aria-hidden="true"><em># Бірінші сабақ</em><br><i>name</i> = input("Атың кім? ")<br><i>print</i>(f"Сәлем, {name}!")<br><i>print</i>("IT Bilim-ге қош келдің")<br><br><em># Нәтиже</em><br>Сәлем, Айгерім!<br>IT Bilim-ге қош келдің</div>
+</div>
+
+<section id="services"><div class="w">
+<h2>Сервистер</h2>
+<div class="grid">
+<div class="card"><h3>Онлайн сабақтар</h3><p>Тірі эфирлер мен жазбалар: қалаған уақытта қайталауға болады.</p></div>
+<div class="card"><h3>Үй тапсырмасын тексеру</h3><p>Ұстаз жобаңды қарап, жазбаша пікір береді.</p></div>
+<div class="card"><h3>Жабық чат</h3><p>Курсқа төлем жасаған бойда топтық чатқа қолжетімділік ашылады.</p></div>
+<div class="card"><h3>Офлайн сабақтар</h3><p>Алматыдағы кабинетте шағын топпен жұмыс.</p></div>
+</div></div></section>
+
+<section id="courses"><div class="w">
+<h2>Курстар</h2>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="cg"></div>
+</div></section>
+
+<section id="team"><div class="w">
+<h2>Команда</h2>
+<div class="grid">
+<div class="card"><div class="av">Д</div><h3>Динара</h3><p>Python және деректер талдауы ұстазы. Студенттердің жобаларын жетекшілік етеді.</p><button class="btn o s" data-ask="Динара">Динараға жазу</button></div>
+<div class="card"><div class="av">А</div><h3>Айдар</h3><p>Веб-әзірлеу ұстазы: HTML, CSS, JavaScript және React.</p><button class="btn o s" data-ask="Айдар">Айдарға жазу</button></div>
+</div></div></section>
+
+<section id="reviews"><div class="w">
+<h2>Пайдаланушылардың пікірлері</h2>
+<div class="car"><div class="track" id="trk"></div>
+<div class="cn"><button class="btn o s" id="pv" aria-label="Алдыңғы">←</button><button class="btn o s" id="nx" aria-label="Келесі">→</button><button class="btn s" id="addRv" style="margin-left:auto">Пікір қалдыру</button></div></div>
+</div></section>
+
+<section id="contacts"><div class="w two">
+<div>
+<h2>Контактілер</h2>
+<p>Сұрағың бар ма? Ұстазға жаз, біз бір жұмыс күнінде жауап береміз.</p>
+<form id="qf" onsubmit="return false">
+<label for="qn">Атың</label><input id="qn" required>
+<label for="qc">Email немесе телефон</label><input id="qc" required>
+<label for="qt">Кімге</label><select id="qt"><option>Динара</option><option>Айдар</option></select>
+<label for="qm">Хабарлама</label><textarea id="qm" required></textarea>
+<p></p><button class="btn" type="submit">Сұрақ қою</button>
+</form></div>
+<div class="mapb">
+<h3>Біздің мекенжай</h3>
+<p>Алматы қ., Мәңгілік Ел даңғылы, 10</p>
+<p>Дс–жм 10:00–19:00</p>
+<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%2C+%D0%BF%D1%80.+%D0%9C%D0%B0%D0%BD%D0%B3%D0%B8%D0%BB%D0%B8%D0%BA+%D0%95%D0%BB%2C+10">Картада ашу</a>
+<p style="margin-top:14px;font-size:.88rem">Картаның ендірмесі жеке доменге шыққанда Google Maps Embed кілтімен қосылады.</p>
+</div></div></section>
+</main>
+
+<footer><div class="w">© 2026 IT Bilim · Алматы, Мәңгілік Ел даңғылы, 10 · HTTPS қорғалған байланыс<br><a href="#" id="qrb" style="color:var(--g)">QR және сілтеме</a></div></footer>
+
+<button id="chatB" aria-label="Чат">💬</button>
+<div id="chat"><div class="ch"><b>Чат: кураторға сұрақ</b><button class="x" style="position:static;font-size:1.3rem" id="chx">×</button></div>
+<div id="msgs"></div>
+<div class="cf"><label class="clip" style="margin:0;display:grid;place-items:center" title="Файл тіркеу">📎<input type="file" id="cfile" hidden></label><input type="text" id="cin" placeholder="Хабарлама…"><button class="btn s" id="csend">Жіберу</button></div></div>
+
+<div class="ov" id="ov"><div class="md" id="md"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var $=function(s){return document.querySelector(s)};
+var COURSES=[
+{id:1,t:"Python негіздері",d:"Бағдарламалау",p:45000,s:"Дс/Жм 19:00, 2 ай",pr:["Айнымалылар, циклдар","Функциялар мен файлдар","Финалдық жоба: Telegram-бот"]},
+{id:2,t:"Деректер талдауы",d:"Бағдарламалау",p:60000,s:"Сс/Бс 19:30, 3 ай",pr:["Pandas және визуализация","SQL негіздері","Финалдық жоба: сату дашборды"]},
+{id:3,t:"Веб-әзірлеу: HTML және CSS",d:"Веб",p:40000,s:"Дс/Жм 18:00, 2 ай",pr:["Верстка және адаптивтілік","Flexbox, Grid","Финалдық жоба: портфолио сайты"]},
+{id:4,t:"JavaScript және React",d:"Веб",p:70000,s:"Сс/Бс 18:00, 3 ай",pr:["DOM және ES6","React компоненттері","Финалдық жоба: толық қосымша"]},
+{id:5,t:"Оқушыларға арналған IT",d:"Оқушы",p:30000,s:"Сенбі 11:00, 2 ай",pr:["Scratch және Python","Ойын жасау","Финалдық жоба: өз ойыны"]}];
+var dirs=["Барлығы","Бағдарламалау","Веб","Оқушы"],cur="Барлығы";
+var S={};try{S=JSON.parse(localStorage.getItem("itb")||"{}")}catch(e){}
+S.users=S.users||[];S.bought=S.bought||{};S.projects=S.projects||{};S.msgs=S.msgs||[];S.pend=S.pend||[];S.pub=S.pub||[];S.me=S.me||null;
+if(!S.seeded){S.pub=[{n:"Айгерім Н.",st:"Студент",tx:"Python курсынан кейін алғашқы ботымды жасадым. Динара апай бәрін түсінікті түсіндіреді.",r:5,a:""},{n:"Ернар Қ.",st:"Оқушы",tx:"Сабақтар қызық, үй тапсырмасына жылдам жауап береді.",r:5,a:""},{n:"Мадина С.",st:"Преподаватель",tx:"Әдістемесі жүйелі. Мектеп оқушыларына осы курсты ұсынамын.",r:4,a:""}];S.seeded=1}
+function save(){try{localStorage.setItem("itb",JSON.stringify(S))}catch(e){}}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function toast(m){var t=$("#toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},3200)}
+function modal(h,big){$("#md").className="md"+(big?" big":"");$("#md").innerHTML='<button class="x" aria-label="Жабу" onclick="closeM()">×</button>'+h;$("#ov").classList.add("on")}
+function closeM(){$("#ov").classList.remove("on")}
+$("#ov").addEventListener("click",function(e){if(e.target.id==="ov")closeM()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+function fmt(n){return n.toLocaleString("ru-RU")+" ₸"}
+
+/* nav */
+$("#bg").onclick=function(){$("#nav").classList.toggle("open")};
+$("#nav").onclick=function(){$("#nav").classList.remove("open")};
+
+/* courses */
+function drawTabs(){$("#tabs").innerHTML=dirs.map(function(d){return '<button class="tab'+(d===cur?" on":"")+'" data-d="'+d+'">'+d+'</button>'}).join("")}
+function drawCourses(){
+ $("#cg").innerHTML=COURSES.filter(function(c){return cur==="Барлығы"||c.d===cur}).map(function(c){
+  var own=S.me&&(S.bought[S.me.email]||[]).indexOf(c.id)>-1;
+  return '<div class="card"><span class="badge" style="align-self:flex-start">'+c.d+'</span><h3 style="margin-top:10px">'+c.t+'</h3><p class="meta">'+c.s+'</p><ul class="pr">'+c.pr.map(function(x){return"<li>"+x+"</li>"}).join("")+'</ul><div class="price">'+fmt(c.p)+'</div>'+(own?'<button class="btn o" data-cab="1">Кабинетте ашу</button>':'<button class="btn" data-buy="'+c.id+'">Сатып алу</button>')+'</div>'}).join("")}
+$("#tabs").onclick=function(e){if(e.target.dataset.d){cur=e.target.dataset.d;drawTabs();drawCourses()}};
+$("#cg").onclick=function(e){var b=e.target.dataset;if(b.buy)buy(+b.buy);if(b.cab)cabinet()};
+
+/* auth */
+function authForm(after){
+ modal('<h3>Кіру немесе тіркелу</h3><div class="opt"><label><input type="radio" name="role" value="Студент" checked>Студент</label><label><input type="radio" name="role" value="Преподаватель">Преподаватель</label></div><label for="ae">Email немесе телефон</label><input id="ae"><label for="ap">Құпиясөз (кемінде 6 таңба)</label><input id="ap" type="password"><label for="an">Атың (тіркелгенде)</label><input id="an"><p></p><button class="btn" id="ago">Кіру / Тіркелу</button> <button class="btn o" id="ags">Google арқылы</button>');
+ function fin(u){S.me=u;save();closeM();syncAuth();drawCourses();toast("Қош келдің, "+u.name+"!");if(after)after()}
+ $("#ago").onclick=function(){var e=$("#ae").value.trim(),p=$("#ap").value;if(!e||p.length<6){toast("Email/телефонды және 6 таңбадан ұзын құпиясөзді енгізіңіз");return}
+  var u=S.users.filter(function(x){return x.email===e})[0];
+  if(u){if(u.pw!==p){toast("Құпиясөз қате");return}fin(u)}
+  else{u={email:e,pw:p,name:$("#an").value.trim()||e.split("@")[0],role:document.querySelector('input[name=role]:checked').value};S.users.push(u);fin(u)}};
+ $("#ags").onclick=function(){var u={email:"google.user@gmail.com",pw:"x",name:"Google қолданушы",role:"Студент"};if(!S.users.some(function(x){return x.email===u.email}))S.users.push(u);fin(u)}}
+function syncAuth(){var b=$("#authBtn");b.textContent=S.me?"Кабинет":"Кіру";b.onclick=function(){S.me?cabinet():authForm()}}
+
+/* purchase */
+function buy(id){
+ var c=COURSES.filter(function(x){return x.id===id})[0];
+ if(!S.me){authForm(function(){buy(id)});return}
+ modal('<h3>Төлем: '+c.t+'</h3><p>Сомасы: <b style="color:var(--tx)">'+fmt(c.p)+'</b></p><div class="opt" style="flex-direction:column"><label><input type="radio" name="pay" checked>Kaspi Pay</label><label><input type="radio" name="pay">CloudPayments (банк картасы)</label></div><p style="margin-top:14px;font-size:.88rem">Демо-режим: нақты ақша алынбайды. Нақты эквайринг сайт серверіне қосылғанда іске асады.</p><button class="btn" id="pgo">Төлеу</button>');
+ $("#pgo").onclick=function(){$("#pgo").disabled=true;$("#pgo").textContent="Өңделуде…";setTimeout(function(){
+  S.bought[S.me.email]=(S.bought[S.me.email]||[]).concat(id);save();closeM();drawCourses();toast("Төлем сәтті. Материалдар мен жабық чат ашылды");cabinet()},900)}}
+
+/* cabinet */
+function cabinet(){
+ if(!S.me){authForm();return}
+ var m=S.me,ids=S.bought[m.email]||[];
+ var h='<h3>'+esc(m.name)+' <span class="badge">'+esc(m.role)+'</span></h3>';
+ if(m.role==="Студент"){
+  h+='<h3 style="margin-top:18px">Сатып алынған курстар</h3>'+(ids.length?ids.map(function(i){var c=COURSES.filter(function(x){return x.id===i})[0];return '<div class="card" style="margin-bottom:10px"><b>'+c.t+'</b><p class="meta">'+c.s+'</p><p style="margin:0">Материалдар мен жабық чат ашық.</p></div>'}).join(""):'<p>Әзірге курс жоқ. <a href="#courses" onclick="closeM()" style="color:var(--g)">Курстар каталогына өту</a></p>');
+  var pj=S.projects[m.email]||[];
+  h+='<h3 style="margin-top:18px">Жобаларым</h3>'+(pj.length?'<table><tr><th>Файл</th><th>Күйі</th></tr>'+pj.map(function(p){return'<tr><td>'+esc(p.f)+'</td><td>'+esc(p.s)+(p.c?' — '+esc(p.c):'')+'</td></tr>'}).join("")+'</table>':'<p>Жоба әлі жүктелмеген.</p>')+'<label for="pf">Жобаны жүктеу</label><input type="file" id="pf">';
+  var mm=S.msgs.filter(function(x){return x.from===m.email||x.to===m.email});
+  h+='<h3 style="margin-top:18px">Ұстазбен хат алмасу</h3>'+(mm.length?mm.map(function(x){return'<p style="margin:0 0 6px"><b style="color:var(--tx)">'+esc(x.fromName||x.from)+':</b> '+esc(x.tx)+'</p>'}).join(""):'<p>Хабарлама жоқ.</p>');
+ }else{
+  var all=[];Object.keys(S.projects).forEach(function(k){S.projects[k].forEach(function(p,i){all.push({k:k,i:i,p:p})})});
+  h+='<h3 style="margin-top:18px">Жобаларды тексеру</h3>'+(all.length?'<table><tr><th>Студент</th><th>Файл</th><th>Күйі</th><th></th></tr>'+all.map(function(a){return'<tr><td>'+esc(a.k)+'</td><td>'+esc(a.p.f)+'</td><td>'+esc(a.p.s)+'</td><td>'+(a.p.s==="Тексерілуде"?'<button class="btn s" data-ok="'+a.k+'|'+a.i+'">Қабылдау</button>':'')+'</td></tr>'}).join("")+'</table>':'<p>Тексеруге жоба жоқ.</p>');
+  h+='<h3 style="margin-top:18px">Пікірлер модерациясы</h3>'+(S.pend.length?S.pend.map(function(r,i){return'<div class="card" style="margin-bottom:10px"><b>'+esc(r.n)+'</b> <span class="stars">'+"★".repeat(r.r)+'</span><p>'+esc(r.tx)+'</p><div><button class="btn s" data-ap="'+i+'">Жариялау</button> <button class="btn o s" data-rj="'+i+'">Қабылдамау</button></div></div>'}).join(""):'<p>Модерацияны күтетін пікір жоқ.</p>');
+  h+='<h3 style="margin-top:18px">Жаңа материал жариялау</h3><label for="mt">Атауы</label><input id="mt"><p></p><button class="btn s" id="mpub">Жариялау</button>';
+  var mm2=S.msgs.filter(function(x){return x.to==="teacher"});
+  h+='<h3 style="margin-top:18px">Студенттердің сұрақтары</h3>'+(mm2.length?mm2.map(function(x){return'<p style="margin:0 0 6px"><b style="color:var(--tx)">'+esc(x.fromName)+' → '+esc(x.who||"")+':</b> '+esc(x.tx)+'</p>'}).join(""):'<p>Сұрақ жоқ.</p>');
+ }
+ h+='<p></p><button class="btn o s" id="out">Шығу</button>';
+ modal(h,true);
+ var pf=$("#pf");if(pf)pf.onchange=function(){if(pf.files[0]){(S.projects[m.email]=S.projects[m.email]||[]).push({f:pf.files[0].name,s:"Тексерілуде"});save();toast("Жоба жүктелді");cabinet()}};
+ var mp=$("#mpub");if(mp)mp.onclick=function(){if($("#mt").value.trim()){toast("Материал жарияланды: "+$("#mt").value.trim());$("#mt").value=""}};
+ $("#out").onclick=function(){S.me=null;save();closeM();syncAuth();drawCourses()};
+ $("#md").onclick=function(e){var d=e.target.dataset;
+  if(d.ok){var q=d.ok.split("|");S.projects[q[0]][+q[1]].s="Қабылданды";S.projects[q[0]][+q[1]].c="жарайсың!";save();cabinet()}
+  if(d.ap){S.pub.unshift(S.pend.splice(+d.ap,1)[0]);save();drawRv();cabinet();toast("Пікір жарияланды")}
+  if(d.rj){S.pend.splice(+d.rj,1);save();cabinet()}}}
+
+/* reviews */
+function init(n){return(n||"?").trim().charAt(0).toUpperCase()}
+function drawRv(){$("#trk").innerHTML=S.pub.map(function(r){return'<div class="card rv"><div class="stars">'+"★".repeat(r.r)+"☆".repeat(5-r.r)+'</div><p style="margin:10px 0 16px;color:var(--tx)">'+esc(r.tx)+'</p><div class="who">'+(r.a?'<img class="av" alt="" src="'+r.a+'">':'<div class="av">'+esc(init(r.n))+'</div>')+'<div><b>'+esc(r.n)+'</b><div class="meta">'+esc(r.st)+'</div></div></div></div>'}).join("")}
+$("#nx").onclick=function(){$("#trk").scrollBy({left:360,behavior:"smooth"})};
+$("#pv").onclick=function(){$("#trk").scrollBy({left:-360,behavior:"smooth"})};
+$("#addRv").onclick=function(){
+ var rate=5,ava="";
+ modal('<h3>Пікір қалдыру</h3><label for="rn">Атың</label><input id="rn"><label for="rs">Статус</label><select id="rs"><option>Студент</option><option>Оқушы</option><option>Преподаватель</option></select><label>Баға</label><div class="rate" id="rt"></div><label for="rx">Пікіріңіз</label><textarea id="rx"></textarea><label for="ra">Фото (міндетті емес)</label><input type="file" id="ra" accept="image/*"><p></p><button class="btn" id="rgo">Жіберу</button>');
+ function st(){$("#rt").innerHTML=[1,2,3,4,5].map(function(i){return'<button type="button" class="'+(i<=rate?"on":"")+'" data-s="'+i+'" aria-label="'+i+' жұлдыз">★</button>'}).join("")}st();
+ $("#rt").onclick=function(e){if(e.target.dataset.s){rate=+e.target.dataset.s;st()}};
+ $("#ra").onchange=function(){var f=this.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement("canvas");c.width=c.height=96;var x=c.getContext("2d"),s=Math.min(im.width,im.height);x.drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,96,96);ava=c.toDataURL("image/jpeg",.7)};im.src=rd.result};rd.readAsDataURL(f)};
+ $("#rgo").onclick=function(){var n=$("#rn").value.trim(),t=$("#rx").value.trim();if(!n||!t){toast("Атыңызды және пікірді толтырыңыз");return}
+  S.pend.push({n:n,st:$("#rs").value,tx:t,r:rate,a:ava});save();closeM();toast("Рақмет! Пікір модератор тексергеннен кейін жарияланады")}};
+
+/* contact form */
+$("#qf").onsubmit=function(e){e.preventDefault();S.msgs.push({from:$("#qc").value,fromName:$("#qn").value,to:"teacher",who:$("#qt").value,tx:$("#qm").value});save();$("#qf").reset();toast("Хабарлама жіберілді. Куратор Email/Telegram арқылы хабарландырылады");return false};
+document.addEventListener("click",function(e){var a=e.target.dataset&&e.target.dataset.ask;if(a){$("#qt").value=a;location.hash="#contacts";$("#qm").focus()}});
+
+/* chat */
+function chatDraw(){var m=$("#msgs");if(!m.dataset.init){m.dataset.init=1;S.chat=S.chat||[{me:0,t:"Сәлем! Сұрағыңды жаз, бүгін куратор жауап береді."}]}
+ m.innerHTML=S.chat.map(function(x){return'<div class="m'+(x.me?" me":"")+'">'+esc(x.t)+'</div>'}).join("");m.scrollTop=m.scrollHeight}
+function send(t){if(!t)return;S.chat.push({me:1,t:t});save();chatDraw();setTimeout(function(){S.chat.push({me:0,t:"Рақмет, хабарламаңыз кураторға жіберілді (Telegram/Email хабарландыру)."});save();chatDraw()},700)}
+$("#chatB").onclick=function(){$("#chat").classList.toggle("on");chatDraw()};
+$("#chx").onclick=function(){$("#chat").classList.remove("on")};
+$("#csend").onclick=function(){var v=$("#cin").value.trim();$("#cin").value="";send(v)};
+$("#cin").onkeydown=function(e){if(e.key==="Enter")$("#csend").click()};
+$("#cfile").onchange=function(){if(this.files[0]){send("📎 "+this.files[0].name);this.value=""}};
+
+/* i18n */
+var RAW=`Бас бет|Главная|Home
+Сервистер|Сервисы|Services
+Курстар|Курсы|Courses
+Команда|Команда|Team
+Пікірлер|Отзывы|Reviews
+Контактілер|Контакты|Contacts
+Кіру|Войти|Log in
+Кабинет|Кабинет|Account
+Айтиді нөлден бастап, нақты жобаға дейін үйрен|Изучайте IT с нуля до настоящего проекта|Learn IT from zero to a real project
+Алматыдағы IT Bilim: Python, веб-әзірлеу және деректер талдауы. Тәжірибелі ұстаздармен онлайн және офлайн сабақтар, әр курста өз жобаң болады.|IT Bilim в Алматы: Python, веб-разработка и анализ данных. Онлайн и офлайн занятия с опытными преподавателями, в каждом курсе у вас будет свой проект.|IT Bilim in Almaty: Python, web development and data analysis. Online and offline classes with experienced teachers, and your own project in every course.
+Курсты таңдау|Выбрать курс|Choose a course
+Сұрақ қою|Задать вопрос|Ask a question
+Онлайн сабақтар|Онлайн-занятия|Online classes
+Тірі эфирлер мен жазбалар: қалаған уақытта қайталауға болады.|Живые эфиры и записи: повторяйте в любое время.|Live streams and recordings you can rewatch any time.
+Үй тапсырмасын тексеру|Проверка домашних заданий|Homework review
+Ұстаз жобаңды қарап, жазбаша пікір береді.|Преподаватель посмотрит проект и даст письменный отзыв.|Your teacher reviews your project and writes feedback.
+Жабық чат|Закрытый чат|Private chat
+Курсқа төлем жасаған бойда топтық чатқа қолжетімділік ашылады.|Доступ к групповому чату открывается сразу после оплаты курса.|Group chat access opens right after you pay for a course.
+Офлайн сабақтар|Офлайн-занятия|Offline classes
+Алматыдағы кабинетте шағын топпен жұмыс.|Работа в малых группах в кабинете в Алматы.|Small-group work in our classroom in Almaty.
+Барлығы|Все|All
+Бағдарламалау|Программирование|Programming
+Веб|Веб|Web
+Оқушы|Школьник|School student
+Преподаватель|Преподаватель|Teacher
+Студент|Студент|Student
+Динара|Динара|Dinara
+Айдар|Айдар|Aidar
+Python және деректер талдауы ұстазы. Студенттердің жобаларын жетекшілік етеді.|Преподаватель Python и анализа данных. Руководит проектами студентов.|Python and data analysis teacher. Supervises student projects.
+Веб-әзірлеу ұстазы: HTML, CSS, JavaScript және React.|Преподаватель веб-разработки: HTML, CSS, JavaScript и React.|Web development teacher: HTML, CSS, JavaScript and React.
+Динараға жазу|Написать Динаре|Message Dinara
+Айдарға жазу|Написать Айдару|Message Aidar
+Пайдаланушылардың пікірлері|Отзывы пользователей|User reviews
+Пікір қалдыру|Оставить отзыв|Leave a review
+Сұрағың бар ма? Ұстазға жаз, біз бір жұмыс күнінде жауап береміз.|Есть вопрос? Напишите преподавателю, ответим в течение одного рабочего дня.|Have a question? Write to a teacher and we will reply within one business day.
+Атың|Ваше имя|Your name
+Email немесе телефон|Email или телефон|Email or phone
+Кімге|Кому|To
+Хабарлама|Сообщение|Message
+Біздің мекенжай|Наш адрес|Our address
+Алматы қ., Мәңгілік Ел даңғылы, 10|г. Алматы, пр. Мангилик Ел, 10|10 Mangilik El Ave., Almaty
+Дс–жм 10:00–19:00|Пн–Пт 10:00–19:00|Mon–Fri 10:00–19:00
+Картада ашу|Открыть на карте|Open on map
+Картаның ендірмесі жеке доменге шыққанда Google Maps Embed кілтімен қосылады.|Встроенная карта подключится через ключ Google Maps Embed после переноса на собственный домен.|The embedded map will be enabled with a Google Maps Embed key once the site moves to its own domain.
+© 2026 IT Bilim · Алматы, Мәңгілік Ел даңғылы, 10 · HTTPS қорғалған байланыс|© 2026 IT Bilim · г. Алматы, пр. Мангилик Ел, 10 · защищённое HTTPS-соединение|© 2026 IT Bilim · 10 Mangilik El Ave., Almaty · secure HTTPS connection
+QR және сілтеме|QR и ссылка|QR and link
+Мәзір|Меню|Menu
+Тіл|Язык|Language
+Чат|Чат|Chat
+Жабу|Закрыть|Close
+Алдыңғы|Назад|Previous
+Келесі|Вперёд|Next
+Файл тіркеу|Прикрепить файл|Attach file
+Хабарлама…|Сообщение…|Message…
+Чат: кураторға сұрақ|Чат: вопрос куратору|Chat: ask a curator
+Жіберу|Отправить|Send
+Сәлем! Сұрағыңды жаз, бүгін куратор жауап береді.|Здравствуйте! Напишите вопрос, куратор ответит сегодня.|Hi! Write your question and a curator will reply today.
+Рақмет, хабарламаңыз кураторға жіберілді (Telegram/Email хабарландыру).|Спасибо, сообщение передано куратору (уведомление в Telegram/Email).|Thanks, your message was sent to a curator (Telegram/Email notification).
+Кіру немесе тіркелу|Вход или регистрация|Log in or sign up
+Құпиясөз (кемінде 6 таңба)|Пароль (не менее 6 символов)|Password (at least 6 characters)
+Атың (тіркелгенде)|Имя (при регистрации)|Name (when signing up)
+Кіру / Тіркелу|Войти / Регистрация|Log in / Sign up
+Google арқылы|Через Google|With Google
+CloudPayments (банк картасы)|CloudPayments (банковская карта)|CloudPayments (bank card)
+Сомасы:|Сумма:|Amount:
+Демо-режим: нақты ақша алынбайды. Нақты эквайринг сайт серверіне қосылғанда іске асады.|Демо-режим: реальные деньги не списываются. Настоящий эквайринг заработает после подключения к серверу сайта.|Demo mode: no real money is charged. Real payments will work once connected to the site server.
+Төлеу|Оплатить|Pay
+Өңделуде…|Обработка…|Processing…
+Сатып алу|Купить|Buy
+Кабинетте ашу|Открыть в кабинете|Open in account
+Сатып алынған курстар|Купленные курсы|Purchased courses
+Әзірге курс жоқ.|Пока нет курсов.|No courses yet.
+Курстар каталогына өту|Перейти в каталог курсов|Go to the course catalog
+Материалдар мен жабық чат ашық.|Материалы и закрытый чат открыты.|Materials and private chat are unlocked.
+Жобаларым|Мои проекты|My projects
+Файл|Файл|File
+Күйі|Статус|Status
+Жоба әлі жүктелмеген.|Проект ещё не загружен.|No project uploaded yet.
+Жобаны жүктеу|Загрузить проект|Upload a project
+Тексерілуде|На проверке|Under review
+Қабылданды — жарайсың!|Принято — молодец!|Accepted — well done!
+Ұстазбен хат алмасу|Переписка с преподавателем|Messages with teacher
+Хабарлама жоқ.|Сообщений нет.|No messages.
+Жобаларды тексеру|Проверка проектов|Project review
+Қабылдау|Принять|Accept
+Тексеруге жоба жоқ.|Нет проектов на проверку.|No projects to review.
+Пікірлер модерациясы|Модерация отзывов|Review moderation
+Жариялау|Опубликовать|Publish
+Қабылдамау|Отклонить|Reject
+Модерацияны күтетін пікір жоқ.|Нет отзывов на модерации.|No reviews awaiting moderation.
+Жаңа материал жариялау|Опубликовать новый материал|Publish new material
+Атауы|Название|Title
+Студенттердің сұрақтары|Вопросы студентов|Student questions
+Сұрақ жоқ.|Вопросов нет.|No questions.
+Шығу|Выйти|Log out
+Статус|Статус|Status
+Баға|Оценка|Rating
+Пікіріңіз|Ваш отзыв|Your review
+Фото (міндетті емес)|Фото (необязательно)|Photo (optional)
+Email/телефонды және 6 таңбадан ұзын құпиясөзді енгізіңіз|Введите email/телефон и пароль длиннее 6 символов|Enter an email/phone and a password longer than 6 characters
+Құпиясөз қате|Неверный пароль|Wrong password
+Төлем сәтті. Материалдар мен жабық чат ашылды|Оплата прошла. Материалы и закрытый чат открыты|Payment successful. Materials and private chat unlocked
+Жоба жүктелді|Проект загружен|Project uploaded
+Пікір жарияланды|Отзыв опубликован|Review published
+Атыңызды және пікірді толтырыңыз|Заполните имя и отзыв|Fill in your name and review
+Рақмет! Пікір модератор тексергеннен кейін жарияланады|Спасибо! Отзыв появится после проверки модератором|Thanks! Your review will appear after moderation
+Хабарлама жіберілді. Куратор Email/Telegram арқылы хабарландырылады|Сообщение отправлено. Куратор получит уведомление по Email/Telegram|Message sent. A curator will be notified by Email/Telegram
+Сайтпен бөлісу|Поделиться сайтом|Share the site
+Сілтемені көшіру|Скопировать ссылку|Copy link
+Сілтеме көшірілді|Ссылка скопирована|Link copied
+QR-кодты телефон камерасымен сканерлеңіз|Наведите камеру телефона на QR-код|Scan the QR code with your phone camera
+Python негіздері|Основы Python|Python basics
+Деректер талдауы|Анализ данных|Data analysis
+Веб-әзірлеу: HTML және CSS|Веб-разработка: HTML и CSS|Web development: HTML and CSS
+JavaScript және React|JavaScript и React|JavaScript and React
+Оқушыларға арналған IT|IT для школьников|IT for school students
+Дс/Жм 19:00, 2 ай|Пн/Пт 19:00, 2 мес.|Mon/Fri 19:00, 2 months
+Сс/Бс 19:30, 3 ай|Вт/Чт 19:30, 3 мес.|Tue/Thu 19:30, 3 months
+Дс/Жм 18:00, 2 ай|Пн/Пт 18:00, 2 мес.|Mon/Fri 18:00, 2 months
+Сс/Бс 18:00, 3 ай|Вт/Чт 18:00, 3 мес.|Tue/Thu 18:00, 3 months
+Сенбі 11:00, 2 ай|Суббота 11:00, 2 мес.|Saturday 11:00, 2 months
+Айнымалылар, циклдар|Переменные, циклы|Variables and loops
+Функциялар мен файлдар|Функции и файлы|Functions and files
+Финалдық жоба: Telegram-бот|Итоговый проект: Telegram-бот|Final project: Telegram bot
+Pandas және визуализация|Pandas и визуализация|Pandas and visualization
+SQL негіздері|Основы SQL|SQL basics
+Финалдық жоба: сату дашборды|Итоговый проект: дашборд продаж|Final project: sales dashboard
+Верстка және адаптивтілік|Вёрстка и адаптивность|Layout and responsiveness
+Финалдық жоба: портфолио сайты|Итоговый проект: сайт-портфолио|Final project: portfolio site
+DOM және ES6|DOM и ES6|DOM and ES6
+React компоненттері|Компоненты React|React components
+Финалдық жоба: толық қосымша|Итоговый проект: полноценное приложение|Final project: full app
+Scratch және Python|Scratch и Python|Scratch and Python
+Ойын жасау|Создание игр|Making games
+Финалдық жоба: өз ойыны|Итоговый проект: своя игра|Final project: your own game
+Python курсынан кейін алғашқы ботымды жасадым. Динара апай бәрін түсінікті түсіндіреді.|После курса Python я сделала своего первого бота. Динара всё понятно объясняет.|After the Python course I built my first bot. Dinara explains everything clearly.
+Сабақтар қызық, үй тапсырмасына жылдам жауап береді.|Занятия интересные, на домашние задания быстро отвечают.|The classes are fun and homework gets quick feedback.
+Әдістемесі жүйелі. Мектеп оқушыларына осы курсты ұсынамын.|Методика системная. Рекомендую этот курс школьникам.|The methodology is well structured. I recommend this course to schoolchildren.
+^Төлем: |Оплата: |Payment: 
+^Қош келдің, |Добро пожаловать, |Welcome, 
+^Материал жарияланды: |Материал опубликован: |Material published: `;
+var KO={"Преподаватель":"Оқытушы"},DT={},PF={},lang=0;
+RAW.split("\n").forEach(function(l){var p=l.split("|");if(p[0].charAt(0)==="^")PF[p[0].slice(1)]=[p[1],p[2]];else if(p.length>2)DT[p[0]]=p});
+var TITLES=["IT Bilim — айти онлайн оқу платформасы","IT Bilim — онлайн-платформа для обучения IT","IT Bilim — online IT learning platform"];
+function tx(s){var t=s.trim();if(!t||lang===0&&!KO[t])return s;var r=t,e=DT[t];
+ if(lang===0)r=KO[t];else if(e)r=e[lang];else for(var k in PF)if(t.indexOf(k)===0){r=PF[k][lang-1]+tx(t.slice(k.length));break}
+ return s.replace(t,function(){return r})}
+function one(n){var q=n.parentNode;if(!q||q.nodeName==="SCRIPT"||q.nodeName==="STYLE"||(q.closest&&q.closest(".code")))return;if(n.__o===undefined)n.__o=n.nodeValue;var v=tx(n.__o);if(n.nodeValue!==v)n.nodeValue=v}
+function at(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute&&e.hasAttribute(a)){if(e["__"+a]===undefined)e["__"+a]=e.getAttribute(a);e.setAttribute(a,tx(e["__"+a]))}})}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n,l=[];while(n=w.nextNode())l.push(n);l.forEach(one);at(root);[].forEach.call(root.querySelectorAll("[placeholder],[aria-label],[title]"),at)}
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===3)one(n);else if(n.nodeType===1)walk(n)})})}).observe(document.body,{childList:true,subtree:true});
+function setLang(i){lang=i;try{localStorage.setItem("itl",i)}catch(e){}document.documentElement.lang=["kk","ru","en"][i];document.title=TITLES[i];$("#lang").value=i;walk(document.body)}
+$("#lang").onchange=function(){setLang(+this.value)};
+
+/* share + QR */
+var SHARE_URL="https://claude.ai/artifact/2QonkyoH5trjG3dVVn5snu";
+function showQR(e){if(e&&e.preventDefault)e.preventDefault();
+ modal('<h3>Сайтпен бөлісу</h3><p>QR-кодты телефон камерасымен сканерлеңіз</p><div id="qrc" style="background:#fff;padding:14px;border-radius:12px;display:inline-block"></div><p></p><input readonly id="shl" value="'+SHARE_URL+'"><p></p><button class="btn" id="cpl">Сілтемені көшіру</button>');
+ try{new QRCode($("#qrc"),{text:SHARE_URL,width:220,height:220,colorDark:"#000000",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M})}catch(x){$("#qrc").style.display="none"}
+ $("#cpl").onclick=function(){var i=$("#shl");i.select();var ok=false;try{ok=document.execCommand("copy")}catch(x){}if(!ok&&navigator.clipboard)navigator.clipboard.writeText(SHARE_URL).catch(function(){});toast("Сілтеме көшірілді")}}
+$("#qrb").onclick=showQR;$("#qrb2").onclick=showQR;
+
+drawTabs();drawCourses();drawRv();syncAuth();
+var sv=null;try{sv=localStorage.getItem("itl")}catch(e){}
+var nl=(navigator.language||"kk").slice(0,2);setLang(sv!==null?+sv:nl==="ru"?1:nl==="en"?2:0);
+</script>
+</body>
+</html>
