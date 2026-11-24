@@ -106,13 +106,26 @@ input,select,textarea{border-radius:12px}
 @media(max-width:860px){nav{border:1px solid var(--bd);border-radius:14px;margin-top:8px}}
 @media(prefers-reduced-motion:reduce){.cur{animation:none}.card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* ===== КАЛЬКУЛЯТОР (сайттың өз түстерімен) ===== */
+#calculator .card:hover{transform:none;border-color:rgba(255,255,255,.09)}
+#calculator .card .btn{margin-top:0}
+#calculator .cg2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#calculator .err{color:#ff8a80;font-size:.85rem;min-height:1.2em;margin-top:4px}
+#calculator .invalid{border-color:#ff8a80}
+#calculator .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+#calculator .res{margin-top:20px;border:1px solid rgba(76,175,80,.35);background:rgba(76,175,80,.08);border-radius:16px;padding:18px}
+#calculator .rt{font-size:.88rem;margin:0}
+#calculator .rsum{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:800;margin:2px 0 12px;color:#81C784}
+#calculator td:last-child{text-align:right;font-weight:600;white-space:nowrap;color:var(--tx)}
+#calculator tr:last-child td{border-bottom:0}
+@media(max-width:560px){#calculator .cg2{grid-template-columns:1fr}#calculator .btn{flex:1 1 140px;text-align:center}}
 </style>
 </head>
 <body>
 <header><div class="w hb">
 <a href="#top" class="logo">IT <b>Bilim</b></a>
 <button class="burger" id="bg" aria-label="Мәзір">☰</button>
-<nav id="nav"><a href="#top">Бас бет</a><a href="#services">Сервистер</a><a href="#courses">Курстар</a><a href="#team">Команда</a><a href="#reviews">Пікірлер</a><a href="#contacts">Контактілер</a></nav>
+<nav id="nav"><a href="#top">Бас бет</a><a href="#services">Сервистер</a><a href="#courses">Курстар</a><a href="#calculator">Калькулятор</a><a href="#team">Команда</a><a href="#reviews">Пікірлер</a><a href="#contacts">Контактілер</a></nav>
 <select id="lang" aria-label="Тіл" style="width:auto;padding:6px 8px"><option value="0">Қазақша</option><option value="1">Русский</option><option value="2">English</option></select>
 <button class="btn s" id="authBtn">Кіру</button>
 </div></header>
@@ -142,6 +155,38 @@ input,select,textarea{border-radius:12px}
 <div class="tabs" id="tabs"></div>
 <div class="grid" id="cg"></div>
 </div></section>
+
+<!-- ===== КАЛЬКУЛЯТОР (бастау) ===== -->
+<section id="calculator"><div class="w">
+<h2>Курс құнын есептеу</h2>
+<p>Курсты, форматты және бөліп төлеу мерзімін таңдап, жалпы құн мен ай сайынғы төлемді біліңіз.</p>
+<div class="card" style="max-width:680px">
+<div id="cc-form">
+<label for="cc-course">Курс *</label>
+<select id="cc-course"><option value="">— Курсты таңдаңыз —</option></select>
+<div class="err" id="cc-e-course"></div>
+<div class="cg2">
+<div>
+<label for="cc-format">Формат *</label>
+<select id="cc-format"><option value="">— Таңдаңыз —</option><option value="on">Онлайн</option><option value="off">Офлайн (Алматы, +20%)</option></select>
+<div class="err" id="cc-e-format"></div>
+</div>
+<div>
+<label for="cc-months">Бөліп төлеу, ай (1–12) *</label>
+<input id="cc-months" inputmode="numeric" autocomplete="off" placeholder="Мысалы: 6">
+<div class="err" id="cc-e-months"></div>
+</div>
+</div>
+<label for="cc-promo">Промокод (міндетті емес)</label>
+<input id="cc-promo" placeholder="BILIM10" autocomplete="off">
+<div class="err" id="cc-e-promo"></div>
+<div class="btns"><button class="btn" id="cc-calc" type="button">Есептеу</button><button class="btn o" id="cc-reset" type="button">Тазалау</button></div>
+</div>
+<div id="cc-result" aria-live="polite"></div>
+<p style="margin:14px 0 0;font-size:.85rem">Есептеу болжамды әрі оқу мақсатындағы демо. Түпкілікті баға — әкімшіден.</p>
+</div>
+</div></section>
+<!-- ===== КАЛЬКУЛЯТОР (соңы) ===== -->
 
 <section id="team"><div class="w">
 <h2>Команда</h2>
@@ -466,6 +511,37 @@ Python курсынан кейін алғашқы ботымды жасадым.
 8 сағат және одан көп|8 часов и больше|8 hours or more
 Курстарды көру|Смотреть курсы|View courses
 Қайта өту|Пройти заново|Retake
+Калькулятор|Калькулятор|Calculator
+Курс құнын есептеу|Расчёт стоимости курса|Course price calculator
+Курсты, форматты және бөліп төлеу мерзімін таңдап, жалпы құн мен ай сайынғы төлемді біліңіз.|Выберите курс, формат и срок рассрочки, чтобы узнать общую стоимость и ежемесячный платёж.|Pick a course, format and installment period to see the total price and the monthly payment.
+Курс *|Курс *|Course *
+— Курсты таңдаңыз —|— Выберите курс —|— Choose a course —
+Формат *|Формат *|Format *
+— Таңдаңыз —|— Выберите —|— Choose —
+Онлайн|Онлайн|Online
+Офлайн (Алматы, +20%)|Офлайн (Алматы, +20%)|Offline (Almaty, +20%)
+Бөліп төлеу, ай (1–12) *|Рассрочка, мес. (1–12) *|Installment, months (1–12) *
+Мысалы: 6|Например: 6|For example: 6
+Промокод (міндетті емес)|Промокод (необязательно)|Promo code (optional)
+Есептеу|Рассчитать|Calculate
+Тазалау|Очистить|Clear
+Жалпы құны|Итоговая стоимость|Total price
+Курс|Курс|Course
+Формат|Формат|Format
+Бастапқы баға|Базовая цена|Base price
+Толық төлем жеңілдігі (1 ай)|Скидка за полную оплату (1 мес.)|Full-payment discount (1 month)
+Промокод|Промокод|Promo code
+Төлем мерзімі (ай)|Срок оплаты (мес.)|Payment period (months)
+Ай сайынғы төлем|Ежемесячный платёж|Monthly payment
+Үнемдеу|Экономия|You save
+Есептеу болжамды әрі оқу мақсатындағы демо. Түпкілікті баға — әкімшіден.|Расчёт приблизительный и учебный. Окончательную цену уточняйте у администратора.|The estimate is approximate and for learning purposes. Ask the administrator for the final price.
+Курсты таңдаңыз.|Выберите курс.|Choose a course.
+Форматты таңдаңыз.|Выберите формат.|Choose a format.
+Айлар санын енгізіңіз.|Введите количество месяцев.|Enter the number of months.
+Тек бүтін оң сан енгізіңіз (мәтінге болмайды).|Введите только целое положительное число (текст не допускается).|Enter a whole positive number only (text is not allowed).
+Кемінде 1 ай болуы керек.|Должно быть не менее 1 месяца.|Must be at least 1 month.
+12 айдан аспауы керек.|Не должно превышать 12 месяцев.|Must not exceed 12 months.
+Промокод табылмады.|Промокод не найден.|Promo code not found.
 ^Сізге ең сәйкес курс: |Вам лучше всего подходит курс: |Your best-matching course: 
 ^Төлем: |Оплата: |Payment: 
 ^Қош келдің, |Добро пожаловать, |Welcome, 
@@ -511,6 +587,60 @@ quiz();
 drawTabs();drawCourses();drawRv();syncAuth();
 var sv=null;try{sv=localStorage.getItem("itl")}catch(e){}
 var nl=(navigator.language||"kk").slice(0,2);setLang(sv!==null?+sv:nl==="ru"?1:nl==="en"?2:0);
+</script>
+
+<script>
+/* ===== КАЛЬКУЛЯТОР: логика (негізгі скриптен кейін жұмыс істейді) ===== */
+(function(){
+var G=function(id){return document.getElementById("cc-"+id)};
+var money=function(n){return Math.round(n).toLocaleString("ru-RU")+" ₸"};
+var PROMO={BILIM10:0.10};
+
+/* Курстар тізімі сайттағы COURSES массивінен алынады, бағалар сәйкес келеді */
+G("course").insertAdjacentHTML("beforeend",COURSES.map(function(c){return'<option value="'+c.id+'">'+c.t+'</option>'}).join(""));
+
+/* 1. Деректі оқу */
+function read(){return{id:G("course").value,f:G("format").value,m:G("months").value.trim(),p:G("promo").value.trim().toUpperCase()}}
+
+/* Валидация */
+function setErr(f,msg){G("e-"+f).textContent=msg;G(f).classList.toggle("invalid",!!msg);return!msg}
+function validate(d){var ok=true,m="";
+ ok=setErr("course",d.id?"":"Курсты таңдаңыз.")&&ok;
+ ok=setErr("format",d.f?"":"Форматты таңдаңыз.")&&ok;
+ if(d.m==="")m="Айлар санын енгізіңіз.";
+ else if(!/^\d+$/.test(d.m))m="Тек бүтін оң сан енгізіңіз (мәтінге болмайды).";
+ else if(+d.m<1)m="Кемінде 1 ай болуы керек.";
+ else if(+d.m>12)m="12 айдан аспауы керек.";
+ ok=setErr("months",m)&&ok;
+ ok=setErr("promo",d.p===""||Object.prototype.hasOwnProperty.call(PROMO,d.p)?"":"Промокод табылмады.")&&ok;
+ return ok}
+
+/* 3. Нәтижені көрсету */
+function row(a,b){return'<tr><td>'+a+'</td><td>'+b+'</td></tr>'}
+
+/* 2. Есептеу */
+function calc(){var d=read(),box=G("result");
+ if(!validate(d)){box.innerHTML="";return}
+ var c=COURSES.filter(function(x){return String(x.id)===d.id})[0],months=+d.m;
+ var base=c.p*(d.f==="off"?1.2:1);
+ var payD=months===1?0.05:0;
+ var prD=PROMO[d.p]||0;
+ var total=base*(1-payD)*(1-prD);
+ box.innerHTML='<div class="res"><p class="rt">Жалпы құны</p><div class="rsum">'+money(total)+'</div><table>'+
+  row("Курс",c.t)+
+  row("Формат",d.f==="off"?"Офлайн (Алматы, +20%)":"Онлайн")+
+  row("Бастапқы баға",money(base))+
+  row("Толық төлем жеңілдігі (1 ай)","−"+Math.round(payD*100)+"%")+
+  row("Промокод","−"+Math.round(prD*100)+"%")+
+  row("Төлем мерзімі (ай)",months)+
+  row("Ай сайынғы төлем",money(total/months))+
+  row("Үнемдеу",money(base-total))+
+  '</table><p style="margin:12px 0 0"><span class="badge lvl">'+c.lvl+'</span></p></div>'}
+
+G("calc").onclick=calc;
+G("reset").onclick=function(){["course","format","months","promo"].forEach(function(f){G(f).value="";setErr(f,"")});G("result").innerHTML=""};
+["months","promo"].forEach(function(f){G(f).addEventListener("keydown",function(e){if(e.key==="Enter")calc()})});
+})();
 </script>
 </body>
 </html>
